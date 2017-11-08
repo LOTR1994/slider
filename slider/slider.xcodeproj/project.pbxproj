@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200060641FB3A0D800A05200 /* LeaderBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200060631FB3A0D800A05200 /* LeaderBoard.swift */; };
 		209B86B71FB3619600BE2EB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B86B61FB3619600BE2EB1 /* AppDelegate.swift */; };
 		209B86B91FB3619600BE2EB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209B86B81FB3619600BE2EB1 /* ViewController.swift */; };
 		209B86BC1FB3619600BE2EB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 209B86BA1FB3619600BE2EB1 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2000605B1FB397AD00A05200 /* slider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = slider.entitlements; sourceTree = "<group>"; };
+		200060631FB3A0D800A05200 /* LeaderBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoard.swift; sourceTree = "<group>"; };
 		209B86B31FB3619600BE2EB1 /* slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209B86B61FB3619600BE2EB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		209B86B81FB3619600BE2EB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,11 +40,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2000605C1FB397AD00A05200 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		209B86AA1FB3619600BE2EB1 = {
 			isa = PBXGroup;
 			children = (
 				209B86B51FB3619600BE2EB1 /* slider */,
 				209B86B41FB3619600BE2EB1 /* Products */,
+				2000605C1FB397AD00A05200 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +67,7 @@
 		209B86B51FB3619600BE2EB1 /* slider */ = {
 			isa = PBXGroup;
 			children = (
+				2000605B1FB397AD00A05200 /* slider.entitlements */,
 				209B86B61FB3619600BE2EB1 /* AppDelegate.swift */,
 				209B86B81FB3619600BE2EB1 /* ViewController.swift */,
 				209B86BA1FB3619600BE2EB1 /* Main.storyboard */,
@@ -63,6 +75,7 @@
 				209B86C21FB3619600BE2EB1 /* LaunchScreen.storyboard */,
 				209B86C51FB3619600BE2EB1 /* Info.plist */,
 				209B86BD1FB3619600BE2EB1 /* slider.xcdatamodeld */,
+				200060631FB3A0D800A05200 /* LeaderBoard.swift */,
 			);
 			path = slider;
 			sourceTree = "<group>";
@@ -100,6 +113,14 @@
 					209B86B21FB3619600BE2EB1 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.HomeKit = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -140,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				209B86BF1FB3619600BE2EB1 /* slider.xcdatamodeld in Sources */,
+				200060641FB3A0D800A05200 /* LeaderBoard.swift in Sources */,
 				209B86B91FB3619600BE2EB1 /* ViewController.swift in Sources */,
 				209B86B71FB3619600BE2EB1 /* AppDelegate.swift in Sources */,
 			);

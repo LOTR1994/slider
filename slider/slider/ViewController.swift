@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var difference: Int = 0
     var totalscore: Int = 0
     var round: Int = 0
+    var count: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class ViewController: UIViewController {
     @IBAction func startOver() {
         totalscore = 0
         round = 0
+        count = 1
         Restart()
     }
     
@@ -58,22 +60,36 @@ class ViewController: UIViewController {
         let difference = abs(currentValue-targetValue)
         let score = 100 - difference
         totalscore += score
-        
+        count += 1
         // Show result //
-        let message = "Target Value: \(targetValue)" +
-            "\nSlider Value: \(currentValue)" + "\nYou got: \(score) "
-        
-        let alert = UIAlertController(title: "Your Input",
-                                      message: message,
-                                      preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "OK",
-                                   style: .default, handler: nil)
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
-        Restart()
+        if count < 6 {
+            let message = "Target Value: \(targetValue)" +
+                "\nSlider Value: \(currentValue)" + "\nYou got: \(score) "
+            
+            let alert = UIAlertController(title: "Result:",
+                                          message: message,
+                                          preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK",
+                                       style: .default, handler: nil)
+            
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+            Restart()
+        }
+        else {
+            let message = "You have done 5 rounds" +
+            "\nYour final score is: \(totalscore)"
+            
+            let alert = UIAlertController(title: "Done",
+                                          message: message,
+                                          preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "Start Over",
+                                       style: .default, handler: {(UIAlertAction) in self.startOver()})
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
