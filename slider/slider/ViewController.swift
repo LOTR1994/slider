@@ -14,19 +14,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var highestScoreLabel: UILabel!
+    
     
     var targetValue: Int = 0
     var currentValue: Int = 50
     var difference: Int = 0
     var totalscore: Int = 0
+    var highscore = 0
     var round: Int = 0
     var count: Int = 0
+    let HighScoreDefault = UserDefaults.standard
+
+    
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        if let highscore = HighScoreDefault.value(forKey: "highscore") as? Int{
+            self.highscore = highscore
+            highestScoreLabel.text = "\(highscore)"
+        }
         startOver()
-        //currentValue = lroundf(slider.value)
-        //targetValue = 1 + Int(arc4random_uniform(100))
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,6 +70,12 @@ class ViewController: UIViewController {
         let score = 100 - difference
         totalscore += score
         count += 1
+        if (totalscore > highscore){
+            
+            highscore = totalscore
+            self.highestScoreLabel.text = "\(highscore)"
+            HighScoreDefault.set(highscore, forKey: "highscore")
+        }
         // Show result //
         if count < 6 {
             let message = "Target Value: \(targetValue)" +
@@ -90,6 +105,8 @@ class ViewController: UIViewController {
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
         }
+
+
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
