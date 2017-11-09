@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var highestScoreLabel: UILabel!
-    
+    @IBOutlet weak var get_highscore: UILabel!
     
     var targetValue: Int = 0
     var currentValue: Int = 50
@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     var round: Int = 0
     var count: Int = 0
     let HighScoreDefault = UserDefaults.standard
-
     
     
     override func viewDidLoad() {
@@ -42,6 +41,79 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func getRefresh(_ sender: AnyObject) {
+        
+        let urlstr : String = "http://www.uvm.edu/~ifoertsc/Restful/example.php?name=" + get_highscore.text!
+        
+        guard let url = URL(string: urlstr) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest, completionHandler: {
+            (data, response, error) in
+            if(error == nil){
+                let jo: NSDictionary
+                do {
+                    jo =
+                        try JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                }
+                catch {
+                    print("error trying to convert data to JSON")
+                    return
+                }
+                if let highscore = jo["highscore"]
+                {
+                    DispatchQueue.main.async{
+                        self.get_highscore.text = String(describing: highscore)
+                    }}
+            }
+            else{
+                print("error calling GET");
+                print(error as Any);
+            }})
+        task.resume()
+        
+    }
+    
+    @IBAction func postRefresh(_ sender: AnyObject) {
+        
+        // playing fast and loose here, in practice should check non-emptiness of
+        // text fields, and possibly validate other expected properties of text.
+        let urlstr : String =
+            "http://www.uvm.edu/~ifoertsc/Restful/example.php?name="
+                + postName.text!
+                + "&age="
+                + postAge.text!
+        
+        guard let url = URL(string: urlstr) else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: url)  // must be mutable to set the http method
+        urlRequest.httpMethod = "POST";
+        let task = URLSession.shared.dataTask(with: urlRequest, completionHandler: {
+            (data, response, error) in
+            if( error == nil){
+                DispatchQueue.main.async{
+                    self.postAge.text = "posted"
+                    self.postName.text = "posted"
+                }
+            }
+            else {
+                print("error calling POST")
+                print(error)
+                return
+            }
+            
+        })
+        task.resume();
+        
+    }
+    
     // retart after 'Hit', total socre doesnt clear //
     func Restart() {
         targetValue = 1 + Int(arc4random_uniform(100))
@@ -53,6 +125,10 @@ class ViewController: UIViewController {
         targetLabel.text = "\(targetValue)"
         scoreLabel.text = "\(totalscore)"
         roundLabel.text = "\(round)"
+    }
+    
+    @IBAction func leaderBoard() {
+        
     }
     
     // restart whole game, clear totalscore and round. //

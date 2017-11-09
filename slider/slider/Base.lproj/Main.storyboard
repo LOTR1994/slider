@@ -117,6 +117,8 @@
                     </view>
                     <connections>
                         <outlet property="highestScoreLabel" destination="wEM-b5-4mL" id="c8i-jl-vNl"/>
+                        <outlet property="highscore" destination="wEM-b5-4mL" id="CKz-lN-6Vl"/>
+                        <outlet property="leaderBoard" destination="vs3-f0-upP" id="52K-ij-rZF"/>
                         <outlet property="roundLabel" destination="FNC-0j-xn7" id="o00-Ym-QHz"/>
                         <outlet property="scoreLabel" destination="RMy-sL-YXf" id="dDg-3B-brx"/>
                         <outlet property="slider" destination="Jxg-QJ-93B" id="Cgm-Me-Mcd"/>
